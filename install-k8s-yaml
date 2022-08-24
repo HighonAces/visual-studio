@@ -18,10 +18,15 @@
               overlay
               br_netfitter
     
-    - name: modprobe
-      shell: |
-              sudo modprobe overlay
-              sudo modprobe br_netfitter
+    - name: modprobe overlay
+      community.general.modprobe:
+        name: overlay
+        state: present
+
+    - name: modprobe br_netfitter
+      community.general.modprobe:
+        name: br_netfitter
+        state: present
     
     - name: Set system configurations for Kubernetes networking
       file:
@@ -58,7 +63,7 @@
 
     - name: Create kubernetes repo file
       file:
-        path: "/etc/apt/sources.list.cd/kubernetes.list"
+        path: "/etc/apt/sources.list.d/kubernetes.list"
         state: "touch"
 
     - name: Add K8s Source
