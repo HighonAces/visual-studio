@@ -16,16 +16,16 @@
         path: "/etc/modules-load.d/containerd.conf"
         block: |
               overlay
-              br_netfitter
+              br_netfilter
     
     - name: modprobe overlay
       community.general.modprobe:
         name: overlay
         state: present
 
-    - name: modprobe br_netfitter
+    - name: modprobe br_netfilter
       community.general.modprobe:
-        name: br_netfitter
+        name: br_netfilter
         state: present
     
     - name: Set system configurations for Kubernetes networking
